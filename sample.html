@@ -6,7 +6,7 @@
   <script src='/lib/sproutcore-2.0.beta.3.min.js'></script>
   <script src='/faq.js'></script>
   <script>
-    var faqConfig = {
+    var faqData = {
       search: true,
       searchText: null,
       categories: [
@@ -49,7 +49,7 @@
       ]
     };
 
-    var faq = Faqjs.CreateFaq(document.getElementById('faqContainer'), faqConfig);
+    var faq = FaqJs.CreateFaq(document.getElementById('faqContainer'), faqData);
   </script>
 </head>
 <body>

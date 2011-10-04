@@ -6,37 +6,37 @@ var jsp = require("uglify-js").parser;
 var uglify = require("uglify-js").uglify;
 
 //tasks
-desc('Prepare files for productoin');
+desc('Prepare files for production');
 task({'default': ['coffee', 'handlebars']}, function (params) {
-  var template = fs.readFileSync('faqjs-template.handlebars.js', 'utf8');
-  var js = fs.readFileSync('faq.js', 'utf8');
+  var template = fs.readFileSync('src/faqjs-template.handlebars.js', 'utf8');
+  var js = fs.readFileSync('src/faqjs.js', 'utf8');
   var ast = jsp.parse(template + js); // parse code and get the initial AST
   ast = uglify.ast_mangle(ast); // get a new AST with mangled names
   ast = uglify.ast_squeeze(ast); // get an AST with compression optimizations
   var minJs = uglify.gen_code(ast); // compressed code here
-  fs.writeFileSync('faq.min.js', minJs, 'utf8');
+  fs.writeFileSync('faqjs.min.js', minJs, 'utf8');
 });
 
 desc('Watch .coffee and .handlebars files for changes and auto compile on change');
 task({'dev': ['coffee', 'handlebars']}, function (params) {
-  watchDir('.', compileCoffeeScript, /\.coffee$/);
-  watchDir('.', compileHandlebars, /\.handlebars$/);
+  watchDir('src', compileCoffeeScript, /\.coffee$/);
+  watchDir('src', compileHandlebars, /\.handlebars$/);
   console.log('Watching .coffee and .handlebars files for changes... [ctrl+c to exit]');
 });
 
 desc('Compile all .coffee files');
 task('coffee', function (params) {
   console.log('Compiling all .coffee files');
-  exec("coffee -l -b -c *.coffee");
+  exec("coffee -l -b -c src/*.coffee");
 }, true);
 
 desc('Compile all .handlebars files');
 task('handlebars', function(params) {
   console.log('Compiling all .handlebars files');
-  fs.readdir('./', function(err, files) {
+  fs.readdir('src', function(err, files) {
     for (var i = 0; i < files.length; i++) {
       if (/\.handlebars$/.test(files[i])) {
-        compileHandlebars(files[i]);
+        compileHandlebars('src/' + files[i]);
       }
     }
   });
