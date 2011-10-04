@@ -28,7 +28,7 @@ desc('Compile all .coffee files');
 task('coffee', function (params) {
   console.log('Compiling all .coffee files');
   exec("coffee -l -b -c *.coffee");
-});
+}, true);
 
 desc('Compile all .handlebars files');
 task('handlebars', function(params) {
@@ -40,7 +40,7 @@ task('handlebars', function(params) {
       }
     }
   });
-});
+}, true);
 
 //helper functions
 function compileCoffeeScript(file) {
@@ -79,5 +79,6 @@ function exec(command) {
     if (stderr) {
       console.log(stderr);
     }
+    complete();
   });
 }
