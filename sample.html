@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <title>faqjs Sample</title>
+  <script src='/lib/jquery-1.6.4.min.js'></script>
+  <script src='/lib/sproutcore-2.0.beta.3.min.js'></script>
+  <script src='/faq.js'></script>
+  <script>
+    var faqConfig = {
+      search: true,
+      searchText: null,
+      categories: [
+        {
+          name: "General Questions",
+          expand: false,
+          questions: [
+            { question: "Who invented the parachute?", answer: "The parachute was invented by DiVinci in 1515." },
+            { question: "How long does a pro baseball last?", answer: "Average lifespan of a major league baseball is 7 pitches." },
+            { question: "Where are the headquarters of the United Nations?", answer: "760 United Nations Plaza, New York City 10017, USA" }
+          ]
+        },
+        {
+          name: "Animal Questions",
+          expand: true,
+          questions: [
+            { question: "What is the life expectancy of a duck?", answer: "About 22 years. Check out http://sonic.net/~petdoc/lifespan.htm for more specific info on types of duck and other creatures." },
+            { question: "How do butterflies taste?", answer: "Butterflies taste with their feet." },
+            { question: "Which is the most dangerous animal in the world?", answer: "The most dangerous animal in the world is the common housefly. Because of their habits of visiting animal waste, they transmit more diseases than any other animal." },
+            { question: "How much to locusts eat?", answer: "A large swarm of desert locusts (Schistocerca gregaria) can consume 20,000 tons (18,160,000 kilograms) of vegetation a day." }
+          ]
+        },
+        {
+          name: "Technical Questions",
+          expand: true,
+          questions: [
+            { question: "How may wings does a biplane have?", answer: "A biplane has two superimposed main wings." },
+            { question: "What is the longest one syllable word?", answer: 'The longest one syllable word in the English language is "screeched".' },
+            { question: "How were microwaves discovered?", answer: "The microwave was invented after a researcher walked by a radar tube and a chocolate bar melted in his pocket." }
+          ]
+        },
+        {
+          name: "Food Questions",
+          expand: false,
+          questions: [
+            { question: "How much chocolate do Americans eat?", answer: "Every second, Americans collectively eat one hundred pounds of chocolate." },
+            { question: "What happens to swallowed chewing gum?", answer: "Swallowed gum is not digested by the gastrointestinal system, it usually passes through within 24 hours." },
+          ]
+        }
+      ]
+    };
+
+    var faq = Faqjs.CreateFaq(document.getElementById('faqContainer'), faqConfig);
+  </script>
+</head>
+<body>
+
+  <h1>The Random FAQ Sample</h1>
+
+  <div id='faqContainer'></div>
+
+</body>
+</html>

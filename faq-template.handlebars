@@ -1,0 +1,18 @@
+<div class="faqjs">
+  {{#if faq.search}}
+    <div class="faqjs-search"><input type="text" placeholder="Search the FAQ" {{bindAttr value="faq.searchText"}}></div>
+  {{/if}}
+  {{#collection contentBinding="faq.categories" tagName="div" itemClass="faqjs-category"}}
+    <input type="checkbox" class="faqjs-expand" {{bindAttr checked="content.expand"}}>
+    <h2>{{content.name}}</h2>
+    {{#if content.expand}}
+      {{#collection contentBinding="content.questions" tagName="div" itemClass="faqjs-questions"}}
+        <input type="checkbox" class="faqjs-expand" {{bindAttr checked="content.showAnswer"}}>
+        <div class="faqjs-question">{{content.question}}</div>
+        {{#if content.showAnswer}}
+          <div class="faqjs-answer">{{content.answer}}</div>
+        {{/if}}
+      {{/collection}}
+    {{/if}}
+  {{/collection}}
+</div>
